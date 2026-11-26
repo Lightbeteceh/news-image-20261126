@@ -99,10 +99,10 @@ def draw_tanker(draw, x, y, w, h):
     hx, hy, hw, hh = x + 28, y + h - 62, w - 90, 26
     draw.rectangle([hx, hy, hx + hw, hy + hh], fill=(30, 30, 34))
     draw.rectangle([hx, hy, hx + hw, hy + 6], fill=(200, 60, 44))
-    draw.rectangle([hx + hw - 34, hy - 22, hx + hw - 10, hy], fill=(30, 30, 34))
-    draw.rectangle([hx + hw - 34, hy - 30, hx + hw - 10, hy - 22], fill=(220, 220, 210))
+    draw.rectangle([hx + hw - 34, hy - 12, hx + hw - 10, hy], fill=(30, 30, 34))
+    draw.rectangle([hx + hw - 34, hy - 22, hx + hw - 10, hy - 12], fill=(220, 220, 210))
     # funnel smoke (kept inside the illustration box)
-    for cx, cy, r in [(hx + 40, hy - 4, 7), (hx + 56, hy - 10, 8), (hx + 74, hy - 16, 9)]:
+    for cx, cy, r in [(hx + 40, hy - 4, 7), (hx + 56, hy - 10, 8), (hx + 74, hy - 12, 8)]:
         draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(120, 118, 112))
     # spiked mines
     for mx, my in [(x + 22, y + h - 18), (x + w - 60, y + h - 14), (x + w // 2 + 30, y + h - 22)]:
@@ -124,7 +124,7 @@ def draw_refinery(draw, x, y, w, h):
     # ground
     draw.rectangle([x, y + h - 22, x + w, y + h], fill=(70, 60, 48))
     # towers
-    for tx, tw, th in [(x + 24, 26, 62), (x + 60, 20, 78), (x + 190, 30, 56)]:
+    for tx, tw, th in [(x + 24, 26, 62), (x + 60, 20, 62), (x + 190, 30, 56)]:
         draw.rectangle([tx, y + h - 22 - th, tx + tw, y + h - 22], fill=(52, 48, 44))
         for ly in range(y + h - 22 - th + 8, y + h - 22 - 4, 10):
             draw.line([tx, ly, tx + tw, ly], fill=(120, 112, 100), width=1)
@@ -139,7 +139,7 @@ def draw_refinery(draw, x, y, w, h):
                  fill=(240, 180, 40))
     # smoke column
     for cx, cy, r in [(x + 210, y + 26, 12), (x + 222, y + 44, 15),
-                      (x + 206, y + 62, 13), (x + 224, y + 80, 11)]:
+                      (x + 206, y + 62, 13), (x + 224, y + 76, 10)]:
         draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(48, 46, 44))
 
 
