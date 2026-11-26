@@ -229,14 +229,14 @@ def render(data):
             d.line([cx, y - 2, cx, y + 44], fill=(180, 172, 150), width=1)
         d.text((cx + 8, y), label, font=labf, fill=FAINT)
         d.text((cx + 8, y + 12), value, font=nf, fill=INK)
-        d.text((cx + 8, y + 36), delta, font=delf, fill=FAINT)
+        d.text((cx + 8, y + 34), delta, font=delf, fill=FAINT)
     y += 46
     d.line([mx, y, W - mx, y], fill=RULE, width=2)
     y += 8
 
     # ---- 3 lead cards
     lead_w = (W - 2 * mx - 2 * 10) // 3
-    lead_h = 240
+    lead_h = 232
     for i, story in enumerate(data["lead"]):
         x0 = mx + i * (lead_w + 10)
         d.rectangle([x0, y, x0 + lead_w, y + lead_h], outline=RULE, width=1)
@@ -259,7 +259,7 @@ def render(data):
     hf2 = font(SANS_B, 11)
     d.text((mx, y), "MORE OF THE DAY", font=hf2, fill=RED)
     d.line([mx + 130, y + 7, W - mx, y + 7], fill=RULE, width=1)
-    y += 16
+    y += 13
     small_w = (W - 2 * mx - 4 * 8) // 5
     small_h = 98
     for i, story in enumerate(data["small"]):
@@ -269,18 +269,18 @@ def render(data):
         tag_chip(d, x0 + 8, yy + 7, story["tag"])
         sf = font(SANS_B, 11)
         lines = wrap(d, story["headline"], sf, small_w - 16, max_lines=2)
-        ly = draw_lines(d, lines, x0 + 8, yy + 25, sf, INK, 13)
+        ly = draw_lines(d, lines, x0 + 8, yy + 25, sf, INK, 12)
         bf = font(SANS, 10)
         blines = wrap(d, story["body"], bf, small_w - 16, max_lines=3)
-        draw_lines(d, blines, x0 + 8, ly + 2, bf, INK, 11)
+        draw_lines(d, blines, x0 + 8, ly + 2, bf, INK, 10)
         rf = font(SANS, 8)
-        d.text((x0 + 8, yy + small_h - 13), story["source"].upper(), font=rf, fill=FAINT)
+        d.text((x0 + 8, yy + small_h - 12), story["source"].upper(), font=rf, fill=FAINT)
     y += 2 * small_h + 6 + 8
 
     # ---- also on: 2 columns
     d.text((mx, y), "ALSO ON — 25 MORE", font=hf2, fill=RED)
     d.line([mx + 150, y + 7, W - mx, y + 7], fill=RULE, width=1)
-    y += 16
+    y += 14
     also = data["also"]
     col_w2 = (W - 2 * mx - 16) // 2
     af = font(SANS, 11)
@@ -290,12 +290,12 @@ def render(data):
         col = i % 2
         row = i // 2
         ax = mx + col * (col_w2 + 16)
-        ay = y + row * 13
+        ay = y + row * 14
         tag = "[" + story["tag"] + "]"
         tw = d.textlength(tag, font=tagf)
         d.text((ax, ay), "• " + story["headline"], font=af, fill=INK)
         d.text((ax + col_w2 - tw, ay + 1), tag, font=tagf, fill=TAG_FILL[story["tag"]])
-    y += rows * 13 + 6
+    y += rows * 14 + 6
 
     # ---- footer: region counts + date check + credits
     d.line([mx, y, W - mx, y], fill=RULE, width=2)
