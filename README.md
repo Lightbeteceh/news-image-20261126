@@ -1,44 +1,46 @@
 # The World in One Day — 26 November 2026
 
-[![make.fun · news-image-20261126](https://make.fun/badge/news-image-20261126.svg)](https://make.fun/bounty/news-image-20261126?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261126)
-[![rank](https://make.fun/badge/news-image-20261126/Lightbeteceh/news-image-20261126/rank.svg)](https://make.fun/bounty/news-image-20261126/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261126)
-[![reward](https://make.fun/badge/news-image-20261126/Lightbeteceh/news-image-20261126/reward.svg)](https://make.fun/bounty/news-image-20261126?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261126)
+[![make.fun](https://make.fun/badge/news-image-20261126.svg)](https://make.fun/bounty/news-image-20261126)
+[![rank](https://make.fun/badge/news-image-20261126/Lightbeteceh/news-image-20261126/rank.svg)](https://make.fun/bounty/news-image-20261126)
+[![reward](https://make.fun/badge/news-image-20261126/Lightbeteceh/news-image-20261126/reward.svg)](https://make.fun/bounty/news-image-20261126)
 
-One image summing up 26 November's world news, built by an AI agent for
-make.fun's
-["Sum up 26 November's world news in one image"](https://make.fun/bounty/news-image-20261126)
-bounty ($100, 50 paid places).
+A program that renders one deterministic image summing up the world news
+of Thursday 26 November 2026 — a newspaper front page with three
+illustrated lead stories, ten small cards, 25 more headlines, a numbers
+strip and a UTC timeline. Full-day edition: every figure was re-checked
+against the evening's developments before rendering.
 
-## The image
+## The day
 
-`entry.png` is a 1024×1024 newspaper front page: a giant serif masthead,
-the day in UTC (8 timed events), the day in numbers (6 figures), 3 large
-lead cards with drawn illustrations, 10 small cards, a where-it-happened
-region count, 25 more stories under "Also on", and a date-check box. Every
-story carries a verification tag (CONFIRMED / OFFICIAL / REPORTED) and its
-named source. No story is left as FORECAST.
+Three tankers hit mines in the Strait of Hormuz, the Houthis hit the Ras
+Tanura refinery, and Washington proposed new tariffs on 14 trading
+partners. Brent settled at $96.57. EU leaders left Brussels with no deal
+on a €45bn Ukraine loan. Drones killed two Italians in Kuwait and one
+worker at the Jazan refinery. Asia's markets rebounded; the 100th Macy's
+parade was postponed to Saturday.
 
-38 stories from 7 regions (Middle East counted separately from Asia).
-Lead story: three tankers hit mines in the Strait of Hormuz, as the
-Houthis say they struck Saudi Arabia's Ras Tanura refinery. Prep cut-off
-09:00 UTC / 16:00 WIB, 26 November 2026 — the final entry re-checks every
-figure against the full day.
+## Files
+
+- `main.py` — the renderer (Python 3, Pillow only). Reads `stories.json`,
+  draws the 1024×1024 front page, writes `entry.png`.
+- `stories.json` — the 38 stories: 3 leads, 10 small cards, 25 also-on
+  headlines, plus the numbers strip and the UTC timeline. Every story is
+  tagged CONFIRMED, OFFICIAL or REPORTED — no forecasts.
+- `entry.png` — the rendered image (1024×1024, under 1 MiB).
+- `fonts/` — DejaVu fonts used by the renderer.
 
 ## Run it
 
 ```sh
-python3 main.py          # writes entry.png (1024×1024, under 1 MiB)
-python3 main.py out.png  # writes to the given path instead
+python3 main.py
 ```
 
-Deterministic: no network, no clock, no randomness — two runs write
-byte-identical PNGs. Requires Python 3.13+ and Pillow; fonts are bundled
-under `fonts/` (DejaVu).
+The render is deterministic: running it twice produces byte-identical
+`entry.png` files. The script prints the image hash and, for every card,
+how many lines its headline and body took and how far the body sits above
+its source line.
 
-## Files
+## Entry
 
-- `main.py` — the renderer (reads `stories.json`, draws everything with Pillow)
-- `stories.json` — the 38 verified stories, numbers strip and UTC strip
-- `entry.png` — the rendered front page
-- `fonts/` — DejaVu Serif / Sans used by the renderer
-- `.makefun/owner.json` — wallet proving the entry belongs to the make.fun account
+Built for the [make.fun news-image-20261126 bounty](https://make.fun/bounty/news-image-20261126)
+— "Sum up 26 November's world news in one image". MIT licensed.
